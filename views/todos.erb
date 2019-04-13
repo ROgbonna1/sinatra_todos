@@ -3,12 +3,12 @@
     <h2><%= @todo_list[:name] %></h2>
     <ul>
       <li>
-        <form action="/lists/<%=@list_number%>/complete_all" method="post">
+        <form action="/lists/<%=@todo_list[:id]%>/complete_all" method="post">
           <button class="check" type="submit">Complete All</button>
         </form>
       </li>
  
-      <li><a href="/edit_list/<%=@list_number%>" class="edit">Edit List</a></li>
+      <li><a href="/edit_list/<%=@todo_list[:id]%>" class="edit">Edit List</a></li>
     </ul>  
   </header>
 
@@ -22,14 +22,14 @@
     
     <li <%="class='complete'" if list_item[:completed]%>>
         
-      <form action="/lists/<%=@list_number%>/list_item/<%=todo_index_lookup(@todo_list, list_item[:name])%>/complete" method="post" class="check">
+      <form action="/lists/<%=@todo_list[:id]%>/list_item/<%=list_item[:id]%>/complete" method="post" class="check">
          <input type="hidden" name="completed" value="<%=!list_item[:completed]%>"/>
          <button type="submit">Complete</button>
       </form>
         
       <h3><%= list_item[:name] %></h3>
       
-      <form action="/lists/<%=@list_number%>/list_item/<%=todo_index_lookup(@todo_list, list_item[:name])%>/delete" method="post" class="delete">
+      <form action="/lists/<%=@todo_list[:id]%>/list_item/<%=list_item[:id]%>/delete" method="post" class="delete">
           <button type="submit">Delete</button>
       </form>  
       
@@ -38,7 +38,7 @@
   <% end %>
 </ul>
 
-<form action="/lists/<%=@list_number%>/list_item" method="post">
+<form action="/lists/<%=@todo_list[:id]%>/list_item" method="post">
   <dl>
     <dt>
       <label for="list_item">Enter a new 'to-do' for this list:</label>
@@ -49,7 +49,7 @@
   </dl>
   <fieldset class="actions">
     <input type="submit" value="Save">
-    <a href="/lists/<%=@list_number%>">Cancel</a>
+    <a href="/lists/<%=@todo_list[:id]%>">Cancel</a>
   </fieldset>
 </form>
 

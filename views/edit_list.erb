@@ -2,14 +2,14 @@
   <header>
     <h2> Editing "<%= @todo_list[:name] %>"</h2>
     <ul>
-      <form action="/lists/delete" method="post">
-        <button class="delete" name="list_number" value=<%=@list_number%>>Delete List</button>
+      <form action="/lists/delete" method="post" class="delete">
+        <button class="delete" name="list_number" value=<%=@todo_list[:id]%>>Delete List</button>
       </form>    
     </ul>  
   </header>
 </section>
 
-<form action="/edit_list/<%= @list_number %>" method="post">
+<form action="/edit_list/<%= @todo_list[:id] %>" method="post">
   <dl>
     <dt>
       <label for="new_name">Enter the new name for <%= @todo_list[:name] %>:</label>
@@ -20,6 +20,6 @@
   </dl>
   <fieldset class="actions">
     <input type="submit" value="Save">
-    <a href="/lists/<%= @list_number %>">Cancel</a>
+    <a href="/lists/<%= @todo_list[:id] %>">Cancel</a>
   </fieldset>
 </form>

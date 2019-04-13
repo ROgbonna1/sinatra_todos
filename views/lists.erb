@@ -1,7 +1,7 @@
 <ul id="lists">
   <% @lists.sort { |list1, list2| percent_remaining(list2) <=> percent_remaining(list1) }.each do |list| %>
     <li class='<%= list_class(list) %>' >
-      <a href="/lists/<%= list_index_lookup(list[:name])%>">
+      <a href="/lists/<%= list[:id]%>">
         <h2><%= list[:name] %></h2> 
         <p><%= todo_count(list) %></p>
       </a>
