@@ -1,25 +1,27 @@
 <section id="todos">
   <header>
-    <h2> Editing "<%= @todo_list[:name] %>"</h2>
+    <h2>Editing '<%= @list[:name] %>'</h2>
     <ul>
-      <form action="/lists/delete" method="post" class="delete">
-        <button class="delete" name="list_number" value=<%=@todo_list[:id]%>>Delete List</button>
-      </form>    
-    </ul>  
+      <li>
+        <form class="delete" action="/lists/<%= params[:id] %>/destroy" method="post">
+          <button type="submit" class="delete">Delete List</button>
+        </form>
+      </li>
+    </ul>
   </header>
 </section>
 
-<form action="/edit_list/<%= @todo_list[:id] %>" method="post">
+<form action="/lists/<%= params[:id] %>" method="post">
   <dl>
     <dt>
-      <label for="new_name">Enter the new name for <%= @todo_list[:name] %>:</label>
+      <label for="list_name">Enter the new name for the list:</label>
     </dt>
     <dd>
-      <input name="new_name" placeholder="List Name" type="text" value="">
+    <input name="list_name" placeholder="List Name" type="text" value="<%= params[:list_name] || @list[:name] %>">
     </dd>
   </dl>
   <fieldset class="actions">
     <input type="submit" value="Save">
-    <a href="/lists/<%= @todo_list[:id] %>">Cancel</a>
+    <a href="/lists/<%= params[:id] %>">Cancel</a>
   </fieldset>
 </form>
